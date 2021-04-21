@@ -8,9 +8,7 @@ export const loadMoreMovieRequest = createAction('movie/loadMoreMovieRequest');
 export const loadMoreMovieSuccess = createAction('movie/loadMoreMovieSuccess');
 export const loadMoreMovieError = createAction('movie/loadMoreMovieError');
 
-export const pageRequest = createAction('movie/pageRequest');
 export const pageSuccess = createAction('movie/pageSuccess');
-export const pageError = createAction('movie/pageError');
 
 export const getBaseUrlRequest = createAction('movie/getBaseUrlRequest');
 export const getBaseUrlSuccess = createAction('movie/getBaseUrlSuccess');
@@ -20,6 +18,8 @@ export const searchMoviesRequest = createAction('movie/searchMoviesRequest');
 export const searchMoviesSuccess = createAction('movie/searchMoviesSuccess');
 export const searchMoviesError = createAction('movie/searchMoviesError');
 
-export const saveSearchMoviesSuccess = createAction(
-  'movie/searchMoviesSuccess',
-);
+export const detailsMovieRequest = createAction('movie/detailsMovieRequest');
+export const detailsMovieSuccess = createAction('movie/detailsMovieSuccess');
+export const detailsMovieError = createAction('movie/detailsMovieError');
+
+export const saveSearchSuccess = createAction('movie/saveSearchSuccess');

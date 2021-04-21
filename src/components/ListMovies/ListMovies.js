@@ -6,6 +6,7 @@ import { selectorsMovie } from '../../redux/movie';
 const ListMovies = ({ movies }) => {
   const baseUrl = useSelector(selectorsMovie.baseUrl);
   const baseSize = useSelector(selectorsMovie.baseSize);
+
   return (
     <ul>
       {movies.map(({ id, poster_path, title }) => (

@@ -7,16 +7,17 @@ import {
   loadMoreMovieRequest,
   loadMoreMovieSuccess,
   loadMoreMovieError,
-  pageRequest,
   pageSuccess,
-  pageError,
   getBaseUrlRequest,
   getBaseUrlSuccess,
   getBaseUrlError,
   searchMoviesRequest,
   searchMoviesSuccess,
   searchMoviesError,
-  saveSearchMoviesSuccess,
+  saveSearchSuccess,
+  detailsMovieRequest,
+  detailsMovieSuccess,
+  detailsMovieError,
 } from './actionsMovie';
 
 const trendMovies = createReducer([], {
@@ -41,8 +42,34 @@ const searchMovies = createReducer([], {
 });
 
 const saveSearch = createReducer('', {
-  [saveSearchMoviesSuccess]: (_, { payload }) => payload,
+  [saveSearchSuccess]: (_, { payload }) => payload,
 });
+
+const movieDetails = createReducer(
+  {},
+  {
+    [detailsMovieSuccess]: (
+      _,
+      {
+        payload: {
+          title,
+          overview,
+          genres,
+          poster_path,
+          release_date,
+          backdrop_path,
+        },
+      },
+    ) => ({
+      title,
+      overview,
+      genres,
+      poster_path,
+      release_date,
+      backdrop_path,
+    }),
+  },
+);
 
 const loader = createReducer(false, {
   [getTopMovieRequest]: () => true,
@@ -51,15 +78,15 @@ const loader = createReducer(false, {
   [loadMoreMovieRequest]: () => true,
   [loadMoreMovieSuccess]: () => false,
   [loadMoreMovieError]: () => false,
-  [pageRequest]: () => true,
-  [pageSuccess]: () => false,
-  [pageError]: () => false,
   [getBaseUrlRequest]: () => true,
   [getBaseUrlSuccess]: () => false,
   [getBaseUrlError]: () => false,
   [searchMoviesRequest]: () => true,
   [searchMoviesSuccess]: () => false,
   [searchMoviesError]: () => false,
+  [detailsMovieRequest]: () => true,
+  [detailsMovieSuccess]: () => false,
+  [detailsMovieError]: () => false,
 });
 
 export default combineReducers({
@@ -69,4 +96,5 @@ export default combineReducers({
   baseUrlAndSize,
   page,
   saveSearch,
+  movieDetails,
 });

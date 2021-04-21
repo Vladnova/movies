@@ -11,7 +11,6 @@ const HomePage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(operationsMovie.getTrendMovies());
-    dispatch(operationsMovie.configuration());
   }, [dispatch]);
 
   const handlePageTrendMovies = () => {

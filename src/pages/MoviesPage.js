@@ -8,11 +8,11 @@ import { selectorsMovie, operationsMovie } from '../redux/movie';
 const SearchPage = () => {
   const searchMovies = useSelector(selectorsMovie.searchMovies);
   const page = useSelector(selectorsMovie.page);
+  const saveSerch = useSelector(selectorsMovie.saveSearch);
   const dispatch = useDispatch();
 
   const handlePageSearchMovies = () => {
-    dispatch(operationsMovie.searchMovies(page));
-    dispatch(operationsMovie.searchMovies(searchMovies));
+    dispatch(operationsMovie.searchMovies(saveSerch, page));
   };
 
   return (
