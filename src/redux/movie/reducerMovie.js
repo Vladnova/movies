@@ -21,6 +21,9 @@ import {
   castRequest,
   castSuccess,
   castError,
+  reviewsRequest,
+  reviewsSuccess,
+  reviewsError,
 } from './actionsMovie';
 
 const trendMovies = createReducer([], {
@@ -78,6 +81,10 @@ const cast = createReducer([], {
   [castSuccess]: (_, { payload }) => [...payload],
 });
 
+const reviews = createReducer([], {
+  [reviewsSuccess]: (_, { payload }) => [...payload],
+});
+
 const loader = createReducer(false, {
   [getTopMovieRequest]: () => true,
   [getTopMovieSuccess]: () => false,
@@ -97,6 +104,9 @@ const loader = createReducer(false, {
   [castRequest]: () => true,
   [castSuccess]: () => false,
   [castError]: () => false,
+  [reviewsRequest]: () => true,
+  [reviewsSuccess]: () => false,
+  [reviewsError]: () => false,
 });
 
 export default combineReducers({
@@ -108,4 +118,5 @@ export default combineReducers({
   saveSearch,
   movieDetails,
   cast,
+  reviews,
 });

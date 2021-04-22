@@ -1,19 +1,35 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { operationsMovie } from '../../../redux/movie';
+import { operationsMovie, selectorsMovie } from '../../../redux/movie';
+import styles from './Reviews.module.css';
 
 const Reviews = () => {
   const dispatch = useDispatch();
   const params = useParams();
+  const reviews = useSelector(selectorsMovie.reviews);
 
   useEffect(() => {
     dispatch(operationsMovie.getReviews(params.movieId));
   }, []);
 
   return (
-    <div>
-      <h1>Reviews</h1>
+    <div className={styles.wrap}>
+      {reviews.length !== 0 && (
+        <ul>
+          {reviews.map(({ author, content, id }) => (
+            <li key={id}>
+              <h4 className={styles.titleAuthor}>Author: {author}</h4>
+              <p>{content}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+      {reviews.length === 0 && (
+        <h2 className={styles.titleDefault}>
+          We don't have any reviews for this movie
+        </h2>
+      )}
     </div>
   );
 };

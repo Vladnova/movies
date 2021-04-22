@@ -14,6 +14,7 @@ const releaseDate = state => state.movies.movieDetails.release_date;
 const backdropPath = state => state.movies.movieDetails.backdrop_path;
 const loader = state => state.movies.loader;
 const cast = state => state.movies.cast;
+const reviews = state => state.movies.reviews;
 
 export default {
   trendMovies,
@@ -32,4 +33,5 @@ export default {
   loader,
   cast,
   baseSizeSmall,
+  reviews,
 };
