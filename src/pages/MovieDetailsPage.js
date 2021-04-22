@@ -1,19 +1,14 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { operationsMovie, selectorsMovie } from '../redux/movie';
+import { useDispatch } from 'react-redux';
+import { useParams, useRouteMatch } from 'react-router-dom';
+import Content from '../components/Content';
+import PreviewMovie from '../components/PreviewMovie';
+import { operationsMovie } from '../redux/movie';
+import { detailsPageRoutes } from '../routers';
 
 const MovieDetailsPage = () => {
   const location = useParams();
-  const title = useSelector(selectorsMovie.title);
-  const overview = useSelector(selectorsMovie.overview);
-  const releaseDate = useSelector(selectorsMovie.releaseDate);
-  const backdropPath = useSelector(selectorsMovie.backdropPath);
-  const genres = useSelector(selectorsMovie.genres);
-  const posterPath = useSelector(selectorsMovie.posterPath);
-  const baseSize = useSelector(selectorsMovie.baseSize);
-  const baseUrl = useSelector(selectorsMovie.baseUrl);
-  console.log(genres);
+  const match = useRouteMatch();
 
   const dispatch = useDispatch();
 
@@ -23,26 +18,8 @@ const MovieDetailsPage = () => {
 
   return (
     <>
-      <div>
-        <button type="button">Go back</button>
-        <img src={`${baseUrl}${baseSize}${posterPath}`} alt={title} />
-
-        <div>
-          <h2>
-            {title}: ({releaseDate})
-          </h2>
-          <h3>Overview</h3>
-          <p>{overview}</p>
-          <h3>Genres</h3>
-          {/* <ul>
-            {genres.map(({ id, name }) => (
-              <li key={id}>
-                <h5>{name}</h5>
-              </li>
-            ))}
-          </ul> */}
-        </div>
-      </div>
+      <PreviewMovie />
+      <Content routes={detailsPageRoutes} url={match.path} />
     </>
   );
 };

@@ -23,3 +23,11 @@ export const detailsMovieSuccess = createAction('movie/detailsMovieSuccess');
 export const detailsMovieError = createAction('movie/detailsMovieError');
 
 export const saveSearchSuccess = createAction('movie/saveSearchSuccess');
+
+export const castRequest = createAction('movie/castRequest');
+export const castSuccess = createAction('movie/castSuccess');
+export const castError = createAction('movie/castError');
+
+export const reviewsRequest = createAction('movie/reviewsRequest');
+export const reviewsSuccess = createAction('movie/reviewsSuccess');
+export const reviewsError = createAction('movie/reviewsError');

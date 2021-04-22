@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectorsMovie } from '../../redux/movie';
 import styles from './MoviesList.module.css';
+import defaultMovieImg from '../../defaultImg/defaultMovieImg.jpg';
 
 const ListMovies = ({ movies }) => {
   const baseUrl = useSelector(selectorsMovie.baseUrl);
@@ -15,7 +16,11 @@ const ListMovies = ({ movies }) => {
           {/* зробити через хук */}
           <NavLink to={`/movies/${id}`}>
             <img
-              src={`${baseUrl}/${baseSize}/${poster_path}`}
+              src={
+                poster_path
+                  ? `${baseUrl}/${baseSize}/${poster_path}`
+                  : `${defaultMovieImg}`
+              }
               alt={title}
               className={styles.img}
             />

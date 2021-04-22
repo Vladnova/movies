@@ -18,6 +18,9 @@ import {
   detailsMovieRequest,
   detailsMovieSuccess,
   detailsMovieError,
+  castRequest,
+  castSuccess,
+  castError,
 } from './actionsMovie';
 
 const trendMovies = createReducer([], {
@@ -28,7 +31,7 @@ const trendMovies = createReducer([], {
 const baseUrlAndSize = createReducer([], {
   [getBaseUrlSuccess]: (_, { payload }) => [
     payload.base_url,
-    payload.logo_sizes[4],
+    payload.logo_sizes,
   ],
 });
 
@@ -71,6 +74,10 @@ const movieDetails = createReducer(
   },
 );
 
+const cast = createReducer([], {
+  [castSuccess]: (_, { payload }) => [...payload],
+});
+
 const loader = createReducer(false, {
   [getTopMovieRequest]: () => true,
   [getTopMovieSuccess]: () => false,
@@ -87,6 +94,9 @@ const loader = createReducer(false, {
   [detailsMovieRequest]: () => true,
   [detailsMovieSuccess]: () => false,
   [detailsMovieError]: () => false,
+  [castRequest]: () => true,
+  [castSuccess]: () => false,
+  [castError]: () => false,
 });
 
 export default combineReducers({
@@ -97,4 +107,5 @@ export default combineReducers({
   page,
   saveSearch,
   movieDetails,
+  cast,
 });

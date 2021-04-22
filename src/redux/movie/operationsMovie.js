@@ -17,6 +17,12 @@ import {
   detailsMovieRequest,
   detailsMovieSuccess,
   detailsMovieError,
+  castRequest,
+  castSuccess,
+  castError,
+  reviewsRequest,
+  reviewsSuccess,
+  reviewsError,
 } from './actionsMovie';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
@@ -69,11 +75,37 @@ const getDetailMovie = id => async dispatch => {
   dispatch(detailsMovieRequest());
   try {
     const { data } = await axios.get(`/movie/${id}`);
-    console.log(data);
     dispatch(detailsMovieSuccess(data));
   } catch (error) {
     dispatch(detailsMovieError(error.message));
   }
 };
 
-export default { getTrendMovies, configuration, searchMovies, getDetailMovie };
+const getCast = id => async dispatch => {
+  dispatch(castRequest());
+  try {
+    const { data } = await axios.get(`/movie/${id}/credits`);
+    dispatch(castSuccess(data.cast));
+  } catch (error) {
+    dispatch(castError(error.message));
+  }
+};
+
+const getReviews = id => async dispatch => {
+  dispatch(reviewsRequest());
+  try {
+    const { data } = await axios.get(`/movie/${id}/reviews`);
+    dispatch(reviewsSuccess(data.results));
+  } catch (error) {
+    dispatch(reviewsError(error.message));
+  }
+};
+
+export default {
+  getTrendMovies,
+  configuration,
+  searchMovies,
+  getDetailMovie,
+  getCast,
+  getReviews,
+};
