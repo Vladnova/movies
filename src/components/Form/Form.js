@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { operationsMovie } from '../../redux/movie';
 import Button from '../Button';
+import styles from './Form.module.css';
 
 const Form = () => {
   const [searchMovies, setSearchMovies] = useState('');
@@ -18,12 +19,19 @@ const Form = () => {
   };
 
   return (
-    <form onSubmit={onSubmitForm}>
+    <form onSubmit={onSubmitForm} className={styles.form}>
       <label>
-        Search
-        <input type="text" value={searchMovies} onChange={onChangeInput} />
+        <input
+          type="text"
+          value={searchMovies}
+          placeholder="Search..."
+          onChange={onChangeInput}
+          className={styles.input}
+        />
       </label>
-      <Button type="submit">Search</Button>
+      <Button type="submit" className={styles.buttonForm}>
+        Search
+      </Button>
     </form>
   );
 };

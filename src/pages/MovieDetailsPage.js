@@ -13,12 +13,13 @@ const MovieDetailsPage = () => {
   const posterPath = useSelector(selectorsMovie.posterPath);
   const baseSize = useSelector(selectorsMovie.baseSize);
   const baseUrl = useSelector(selectorsMovie.baseUrl);
+  console.log(genres);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(operationsMovie.getDetailMovie(location.movieId));
-  }, [dispatch]);
+  }, [dispatch, location]);
 
   return (
     <>
