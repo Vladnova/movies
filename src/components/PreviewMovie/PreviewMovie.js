@@ -5,11 +5,11 @@ import Button from '../Button';
 import { ReactComponent as GoBackIcon } from '../../icons/goBack.svg';
 import styles from './MoviesPreview.module.css';
 import Navigation from '../Navigation';
-import { useHistory, useLocation, useRouteMatch } from 'react-router';
+import { useRouteMatch } from 'react-router';
 import { detailsPageRoutes } from '../../routers';
 import defaultMovieImg from '../../defaultImg/defaultMovieImg.jpg';
 
-const PreviewMovie = () => {
+const PreviewMovie = ({ goBack }) => {
   const title = useSelector(selectorsMovie.title);
   const overview = useSelector(selectorsMovie.overview);
   const releaseDate = useSelector(selectorsMovie.releaseDate);
@@ -21,20 +21,6 @@ const PreviewMovie = () => {
   const baseSizeBig = useSelector(selectorsMovie.baseSizeBig);
 
   const math = useRouteMatch();
-  const pathname = useLocation();
-  const location = useParams();
-
-  useEffect(() => {
-    const error =
-      pathname !== `/movies/${movieId}` &&
-      pathname !== `/movies/${movieId}/cast` &&
-      pathname !== `/movies/${movieId}/reviews`;
-
-    if (error) {
-      history.push('/');
-    }
-  }, []);
-
   return (
     <>
       {genres && (
@@ -45,11 +31,7 @@ const PreviewMovie = () => {
               backgroundImage: `linear-gradient(to right, rgba(3, 37, 65, 0.7), rgba(3, 37, 65, 0.7)),url(${baseUrl}${baseSizeBig}${backdropPath})`,
             }}
           >
-            <Button
-              type="button"
-              className={styles.goBackBtn}
-              onClick={() => null}
-            >
+            <Button type="button" className={styles.goBackBtn} onClick={goBack}>
               <GoBackIcon width="40" height="40" />
             </Button>
             <img

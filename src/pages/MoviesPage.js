@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useRouteMatch } from 'react-router';
 import Button from '../components/Button';
 import Form from '../components/Form';
 import ListMovies from '../components/ListMovies';
 import { selectorsMovie, operationsMovie } from '../redux/movie';
+import { searchMoviesSuccess } from '../redux/movie/actionsMovie';
 import styles from './allStylesPages.module.css';
 
 const SearchPage = () => {
@@ -12,15 +14,25 @@ const SearchPage = () => {
   const page = useSelector(selectorsMovie.page);
   const saveSearch = useSelector(selectorsMovie.saveSearch);
   const dispatch = useDispatch();
+  const { path } = useRouteMatch();
 
-  // useEffect(() => {
-  //   dispatch(operationsMovie.configuration());
-  // }, [dispatch]);
+  const pathHome = useSelector(selectorsMovie.path);
+
+  useEffect(() => {
+    dispatch(operationsMovie.getPathMovies(path));
+  }, [dispatch, path]);
+
+  useEffect(() => {
+    return () => {
+      if (pathHome === '/') {
+        dispatch(searchMoviesSuccess([]));
+      }
+    };
+  }, [dispatch, pathHome]);
 
   const handlePageSearchMovies = () => {
     dispatch(operationsMovie.searchMovies(saveSearch, page));
   };
-
   return (
     <>
       <Form />

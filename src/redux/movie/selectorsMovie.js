@@ -16,6 +16,7 @@ const loader = state => state.movies.loader;
 const cast = state => state.movies.cast;
 const reviews = state => state.movies.reviews;
 const constant = state => state.movies.constantMovies;
+const path = state => state.movies.path;
 
 export default {
   trendMovies,
@@ -36,4 +37,5 @@ export default {
   baseSizeSmall,
   reviews,
   constant,
+  path,
 };

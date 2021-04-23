@@ -4,23 +4,28 @@ import { operationsMovie, selectorsMovie } from '../redux/movie';
 import ListMovies from '../components/ListMovies';
 import Button from '../components/Button';
 import styles from './allStylesPages.module.css';
+import { useRouteMatch } from 'react-router';
 
 const HomePage = () => {
   const page = useSelector(selectorsMovie.page);
   const trendMovies = useSelector(selectorsMovie.trendMovies);
+  const baseUrl = useSelector(selectorsMovie.baseUrl);
+
+  const { path } = useRouteMatch();
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(operationsMovie.getTrendMovies());
-    // dispatch(operationsMovie.configuration());
-  }, [dispatch]);
+    dispatch(operationsMovie.getPathHome(path));
+  }, [dispatch, path, baseUrl]);
 
   const handlePageTrendMovies = () => {
     dispatch(operationsMovie.getTrendMovies(page));
   };
   return (
     <>
-      <ListMovies movies={trendMovies} />
+      {baseUrl && <ListMovies movies={trendMovies} />}
       <Button
         type="button"
         onClick={handlePageTrendMovies}

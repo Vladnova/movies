@@ -28,6 +28,8 @@ import {
   reviewsSuccess,
   reviewsError,
   constantSuccess,
+  pathHomeSuccess,
+  pathMoviesSuccess,
 } from './actionsMovie';
 
 const trendMovies = createReducer([], {
@@ -93,6 +95,11 @@ const constantMovies = createReducer([], {
   [constantSuccess]: (_, { payload }) => [...payload].length,
 });
 
+const path = createReducer('', {
+  [pathHomeSuccess]: (_, { payload }) => payload,
+  [pathMoviesSuccess]: (_, { payload }) => payload,
+});
+
 const loader = createReducer(false, {
   [getTopMovieRequest]: () => true,
   [getTopMovieSuccess]: () => false,
@@ -131,4 +138,5 @@ export default combineReducers({
   cast,
   reviews,
   constantMovies,
+  path,
 });

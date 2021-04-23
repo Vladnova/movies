@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { operationsMovie, selectorsMovie } from '../../../redux/movie';
-import defaulActorImg from '../../../defaultImg/defaulActorImg.jpg';
+import defaultActorImg from '../../../defaultImg/defaulActorImg.jpg';
+import { castSuccess } from '../../../redux/movie/actionsMovie';
 import styles from './Cast.module.css';
 
 const Cast = () => {
@@ -15,7 +16,10 @@ const Cast = () => {
 
   useEffect(() => {
     dispatch(operationsMovie.getCast(params.movieId));
-  }, [dispatch]);
+    return () => {
+      dispatch(castSuccess([]));
+    };
+  }, [dispatch, params]);
 
   return (
     <ul className={styles.wrapCast}>
@@ -28,7 +32,7 @@ const Cast = () => {
                 src={
                   profile_path
                     ? `${baseUrl}${logoSize}${profile_path}`
-                    : `${defaulActorImg}`
+                    : `${defaultActorImg}`
                 }
                 alt={name}
               />

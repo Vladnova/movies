@@ -37,3 +37,7 @@ export const reviewsSuccess = createAction('movie/reviewsSuccess');
 export const reviewsError = createAction('movie/reviewsError');
 
 export const constantSuccess = createAction('movie/constantSuccess');
+
+export const pathHomeSuccess = createAction('movie/pathHomeSuccess');
+
+export const pathMoviesSuccess = createAction('movie/pathMoviesSuccess');

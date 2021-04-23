@@ -27,6 +27,8 @@ import {
   reviewsSuccess,
   reviewsError,
   constantSuccess,
+  pathHomeSuccess,
+  pathMoviesSuccess,
 } from './actionsMovie';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
@@ -57,7 +59,7 @@ const configuration = () => async dispatch => {
   }
 };
 
-const searchMovies = (query = '', page = 1) => async dispatch => {
+const searchMovies = (query = '', page = 1, path) => async dispatch => {
   dispatch(searchMoviesRequest());
   dispatch(loadMoreQueryRequest());
   try {
@@ -107,6 +109,18 @@ const getReviews = id => async dispatch => {
   }
 };
 
+const getPathHome = path => dispatch => {
+  try {
+    dispatch(pathHomeSuccess(path));
+  } catch (error) {}
+};
+
+const getPathMovies = path => dispatch => {
+  try {
+    dispatch(pathMoviesSuccess(path));
+  } catch (error) {}
+};
+
 export default {
   getTrendMovies,
   configuration,
@@ -114,4 +128,6 @@ export default {
   getDetailMovie,
   getCast,
   getReviews,
+  getPathHome,
+  getPathMovies,
 };
