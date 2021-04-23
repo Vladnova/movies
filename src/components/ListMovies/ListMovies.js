@@ -11,22 +11,23 @@ const ListMovies = ({ movies }) => {
 
   return (
     <ul className={styles.wrapList}>
-      {movies.map(({ id, poster_path, title }) => (
-        <li key={id} className={styles.item}>
-          {/* зробити через хук */}
-          <NavLink to={`/movies/${id}`}>
-            <img
-              src={
-                poster_path
-                  ? `${baseUrl}/${baseSize}/${poster_path}`
-                  : `${defaultMovieImg}`
-              }
-              alt={title}
-              className={styles.img}
-            />
-          </NavLink>
-        </li>
-      ))}
+      {baseSize &&
+        movies.map(({ id, poster_path, title }) => (
+          <li key={id} className={styles.item}>
+            {/* зробити через хук */}
+            <NavLink to={`/movies/${id}`}>
+              <img
+                src={
+                  poster_path
+                    ? `${baseUrl}/${baseSize}/${poster_path}`
+                    : `${defaultMovieImg}`
+                }
+                alt={title}
+                className={styles.img}
+              />
+            </NavLink>
+          </li>
+        ))}
     </ul>
   );
 };

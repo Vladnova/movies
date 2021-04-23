@@ -29,9 +29,11 @@ const Form = () => {
           className={styles.input}
         />
       </label>
-      <Button type="submit" className={styles.buttonForm}>
-        Search
-      </Button>
+      {searchMovies && (
+        <Button type="submit" className={styles.buttonForm}>
+          Search
+        </Button>
+      )}
     </form>
   );
 };

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectorsMovie } from '../../redux/movie';
 import Button from '../Button';
 import { ReactComponent as GoBackIcon } from '../../icons/goBack.svg';
 import styles from './MoviesPreview.module.css';
 import Navigation from '../Navigation';
-import { useRouteMatch } from 'react-router';
+import { useHistory, useLocation, useRouteMatch } from 'react-router';
 import { detailsPageRoutes } from '../../routers';
 import defaultMovieImg from '../../defaultImg/defaultMovieImg.jpg';
 
@@ -19,9 +19,21 @@ const PreviewMovie = () => {
   const baseSize = useSelector(selectorsMovie.baseSize);
   const baseUrl = useSelector(selectorsMovie.baseUrl);
   const baseSizeBig = useSelector(selectorsMovie.baseSizeBig);
-  const loader = useSelector(selectorsMovie.loader);
 
   const math = useRouteMatch();
+  const pathname = useLocation();
+  const location = useParams();
+
+  useEffect(() => {
+    const error =
+      pathname !== `/movies/${movieId}` &&
+      pathname !== `/movies/${movieId}/cast` &&
+      pathname !== `/movies/${movieId}/reviews`;
+
+    if (error) {
+      history.push('/');
+    }
+  }, []);
 
   return (
     <>
@@ -33,7 +45,11 @@ const PreviewMovie = () => {
               backgroundImage: `linear-gradient(to right, rgba(3, 37, 65, 0.7), rgba(3, 37, 65, 0.7)),url(${baseUrl}${baseSizeBig}${backdropPath})`,
             }}
           >
-            <Button type="button" className={styles.goBackBtn}>
+            <Button
+              type="button"
+              className={styles.goBackBtn}
+              onClick={() => null}
+            >
               <GoBackIcon width="40" height="40" />
             </Button>
             <img
