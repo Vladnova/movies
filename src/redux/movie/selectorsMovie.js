@@ -15,6 +15,7 @@ const backdropPath = state => state.movies.movieDetails.backdrop_path;
 const loader = state => state.movies.loader;
 const cast = state => state.movies.cast;
 const reviews = state => state.movies.reviews;
+const constant = state => state.movies.constantMovies;
 
 export default {
   trendMovies,
@@ -34,4 +35,5 @@ export default {
   cast,
   baseSizeSmall,
   reviews,
+  constant,
 };

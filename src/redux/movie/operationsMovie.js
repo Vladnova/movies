@@ -6,6 +6,9 @@ import {
   loadMoreMovieRequest,
   loadMoreMovieSuccess,
   loadMoreMovieError,
+  loadMoreQueryRequest,
+  loadMoreQuerySuccess,
+  loadMoreQueryError,
   pageSuccess,
   getBaseUrlRequest,
   getBaseUrlSuccess,
@@ -23,6 +26,7 @@ import {
   reviewsRequest,
   reviewsSuccess,
   reviewsError,
+  constantSuccess,
 } from './actionsMovie';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
@@ -55,18 +59,20 @@ const configuration = () => async dispatch => {
 
 const searchMovies = (query = '', page = 1) => async dispatch => {
   dispatch(searchMoviesRequest());
-  dispatch(loadMoreMovieRequest());
+  dispatch(loadMoreQueryRequest());
   try {
     const { data } = await axios.get(
       `/search/movie?query=${query}&page=${page}`,
     );
     dispatch(pageSuccess(page));
     dispatch(saveSearchSuccess(query));
+    dispatch(constantSuccess(data.results));
+
     page > 1
-      ? dispatch(loadMoreMovieSuccess(data.results))
+      ? dispatch(loadMoreQuerySuccess(data.results))
       : dispatch(searchMoviesSuccess(data.results));
   } catch (error) {
-    dispatch(loadMoreMovieError(error.message));
+    dispatch(loadMoreQueryError(error.message));
     dispatch(searchMoviesError(error.message));
   }
 };

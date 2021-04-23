@@ -63,7 +63,12 @@ const PreviewMovie = () => {
             </div>
           </div>
 
-          <Navigation routes={detailsPageRoutes} url={math.url} />
+          <Navigation
+            routes={detailsPageRoutes}
+            url={math.url}
+            className={[styles.wrapper, , styles.link]}
+            activeClassName={styles.linkActive}
+          />
         </>
       )}
     </>

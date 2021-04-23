@@ -8,6 +8,10 @@ export const loadMoreMovieRequest = createAction('movie/loadMoreMovieRequest');
 export const loadMoreMovieSuccess = createAction('movie/loadMoreMovieSuccess');
 export const loadMoreMovieError = createAction('movie/loadMoreMovieError');
 
+export const loadMoreQueryRequest = createAction('movie/loadMoreQueryRequest');
+export const loadMoreQuerySuccess = createAction('movie/loadMoreQuerySuccess');
+export const loadMoreQueryError = createAction('movie/loadMoreQueryError');
+
 export const pageSuccess = createAction('movie/pageSuccess');
 
 export const getBaseUrlRequest = createAction('movie/getBaseUrlRequest');
@@ -31,3 +35,5 @@ export const castError = createAction('movie/castError');
 export const reviewsRequest = createAction('movie/reviewsRequest');
 export const reviewsSuccess = createAction('movie/reviewsSuccess');
 export const reviewsError = createAction('movie/reviewsError');
+
+export const constantSuccess = createAction('movie/constantSuccess');

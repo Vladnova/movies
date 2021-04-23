@@ -8,6 +8,7 @@ import styles from './allStylesPages.module.css';
 
 const SearchPage = () => {
   const searchMovies = useSelector(selectorsMovie.searchMovies);
+  const constant = useSelector(selectorsMovie.constant);
   const page = useSelector(selectorsMovie.page);
   const saveSearch = useSelector(selectorsMovie.saveSearch);
   const dispatch = useDispatch();
@@ -24,13 +25,15 @@ const SearchPage = () => {
     <>
       <Form />
       <ListMovies movies={searchMovies} />
-      <Button
-        type="button"
-        onClick={handlePageSearchMovies}
-        className={styles.button}
-      >
-        Load More
-      </Button>
+      {searchMovies.length > 1 && constant > 19 && (
+        <Button
+          type="button"
+          onClick={handlePageSearchMovies}
+          className={styles.button}
+        >
+          Load More
+        </Button>
+      )}
     </>
   );
 };
